@@ -1,0 +1,5 @@
+openai
+azure-identity
+azure-mgmt-resource
+azureml-core
+flask

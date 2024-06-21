@@ -1,0 +1,89 @@
+What are your hours of operation?
+Our customer support is available 24/7.
+
+How can I reset my password?
+You can reset your password by clicking on the "Forgot Password" link on the login page.
+
+Where can I track my order?
+You can track your order in the "My Orders" section of your account dashboard.
+
+What is your return policy?
+You can return any item within 30 days of purchase for a full refund. Please visit our Returns page for more details.
+
+How do I contact customer support?
+You can contact customer support via email at support@example.com or call us at 1-800-123-4567.
+
+Do you offer international shipping?
+Yes, we offer international shipping to most countries. Shipping fees and delivery times vary by location.
+
+How can I update my billing information?
+You can update your billing information in the "Billing Information" section of your account settings.
+
+What payment methods do you accept?
+We accept all major credit cards, PayPal, and Apple Pay.
+
+How do I apply a discount code to my order?
+You can apply a discount code at checkout in the "Discount Code" field.
+
+Can I change or cancel my order?
+You can change or cancel your order within 1 hour of placing it. Please contact customer support for assistance.
+
+How do I subscribe to your newsletter?
+You can subscribe to our newsletter by entering your email address in the subscription box at the bottom of our homepage.
+
+What should I do if I receive a damaged item?
+If you receive a damaged item, please contact customer support with your order number and a photo of the damage.
+
+Do you offer gift cards?
+Yes, we offer digital gift cards in various amounts. You can purchase them on our Gift Cards page.
+
+How do I redeem a gift card?
+You can redeem a gift card by entering the gift card code at checkout.
+
+Where can I find your privacy policy?
+Our privacy policy is available at the bottom of our website. You can also find it [here](https://www.example.com/privacy-policy).
+
+How do I create an account?
+You can create an account by clicking on the "Sign Up" button on the top right corner of our homepage and filling out the registration form.
+
+What is your warranty policy?
+We offer a one-year warranty on all products. Please visit our Warranty page for more details.
+
+Can I track my return?
+Yes, you can track your return in the "Returns" section of your account dashboard.
+
+How do I delete my account?
+If you wish to delete your account, please contact customer support for assistance.
+
+What is your refund policy?
+Refunds are processed within 5-7 business days after we receive your returned item. You will receive a confirmation email once your refund has been processed.
+
+How do I change my shipping address?
+You can change your shipping address in the "Shipping Information" section of your account settings.
+
+Can I get a price adjustment if an item goes on sale?
+Yes, we offer price adjustments within 14 days of purchase. Please contact customer support with your order number.
+
+How do I report a problem with your website?
+If you encounter any issues with our website, please contact customer support with details of the problem.
+
+Do you offer live chat support?
+Yes, we offer live chat support on our website during business hours.
+
+How do I unsubscribe from your emails?
+You can unsubscribe from our emails by clicking the "Unsubscribe" link at the bottom of any of our emails.
+
+Can I return an item without a receipt?
+Yes, you can return an item without a receipt, but you may only receive store credit.
+
+What should I do if I forgot my account password?
+You can reset your password by clicking on the "Forgot Password" link on the login page.
+
+Do you offer expedited shipping?
+Yes, we offer expedited shipping options at checkout.
+
+How can I check the status of my refund?
+You can check the status of your refund in the "Refunds" section of your account dashboard.
+
+How do I update my email address?
+You can update your email address in the "Account Information" section of your account settings.
