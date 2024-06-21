@@ -1,4 +1,4 @@
-# Customer Support Chatbot
+# End-to-End AI Customer Support Chatbot with deployment Flow
 
 This project is an AI-powered customer support chatbot using Azure and OpenAI services. The chatbot can handle common customer queries and provide relevant information.
 
@@ -38,4 +38,4 @@ cd customer-support-chatbot
 
 ```bash
 OPENAI_API_KEY=your_openai_api_key
-```
+```Testing CI pipeline
