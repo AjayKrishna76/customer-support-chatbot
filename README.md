@@ -35,7 +35,10 @@ customer-support-chatbot/
 │   └── devcontainer.json
 ├── .github/
 │   └── workflows/
-│       └── ci.yml
+│       ├── ci.yml
+│       ├── dev.yml
+│       ├── test.yml
+│       └── prod.yml
 ├── data/
 │   └── sample_data.txt
 ├── src/
@@ -44,13 +47,18 @@ customer-support-chatbot/
 │   ├── bulk_test_chatbot.py
 │   └── test_chatbot.py
 ├── .env
+├── .env.dev
 ├── .env.test
+├── .env.prod
 ├── Dockerfile
 ├── docker-compose.yml
+├── docker-compose.dev.yml
 ├── docker-compose.test.yml
+├── docker-compose.prod.yml
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+
 ```
 
 
@@ -116,8 +124,28 @@ The CI/CD pipeline is configured using GitHub Actions. It includes the following
 - Run bulk tests
 - Generate and upload coverage reports
 
-## Development Environment
-The development environment is set up using Docker and Visual Studio Code Dev Containers.
+## Environments
+
+### Development Environment
+
+The development environment is set up to allow developers to write and debug code. Use the following command to start the development environment locally:
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+```
+
+## Test Environment
+The test environment is used to run automated tests to validate changes. Use the following commands to deploy and run tests in the test environment locally:
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.test.yml up --build -d
+docker-compose -f docker-compose.yml -f docker-compose.test.yml run app
+```
+## Production Environment
+The production environment is where the final version of the application runs for end-users. Deployment to production is handled by the CI/CD pipeline and triggered by tagging a release:
+```bash
+git tag -a v1.0.0 -m "Release version 1.0.0"
+git push origin --tags
+```
 
 ### Dockerfile
 ```bash
@@ -162,6 +190,29 @@ services:
   "runArgs": ["--env-file", ".env"]
 }
 ```
+
+## Test Environment Setup
+
+The test environment is set up to ensure that the application is thoroughly tested in an isolated and controlled environment before deployment to production. This includes running automated tests, generating coverage reports, and validating the code quality.
+
+### Test-Specific Environment Variables
+
+A separate `.env.test` file is used to define environment variables specific to the test environment. This file is placed in the root directory of the project.
+
+**Example `.env.test` file:**
+
+```env
+OPENAI_API_KEY=test_openai_api_key
+```
+
+## CI/CD Pipeline
+The CI/CD pipeline is configured to handle different environments:
+
+- Development: Triggered on push to the dev branch.
+- Test: Triggered on pull request to the main branch.
+- Production: Triggered on push of a version tag.
+
+
 
 ### Contributing
 Contributions are welcome! Please open an issue or submit a pull request.
