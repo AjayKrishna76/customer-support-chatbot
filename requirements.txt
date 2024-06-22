@@ -3,3 +3,5 @@ azure-identity
 azure-mgmt-resource
 azureml-core
 flask
+pytest
+python-dotenv
