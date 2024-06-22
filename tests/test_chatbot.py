@@ -1,5 +1,10 @@
 import unittest
-from src.chatbot import customer_support_chatbot
+import sys
+import os
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+from chatbot import customer_support_chatbot
+
 
 class TestChatbot(unittest.TestCase):
 
