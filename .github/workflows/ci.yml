@@ -25,5 +25,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run Unit Tests
+      env:
+        PYTHONPATH: ./src
       run: |
         pytest
