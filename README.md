@@ -48,4 +48,6 @@ cd customer-support-chatbot
 
 ```bash
 OPENAI_API_KEY=your_openai_api_key
-```Testing CI pipeline
+```
+
+

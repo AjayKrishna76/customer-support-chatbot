@@ -29,3 +29,9 @@ jobs:
         PYTHONPATH: ./src
       run: |
         pytest
+
+    - name: Run Bulk Test
+      env:
+        PYTHONPATH: ${{ github.workspace }}/src
+      run: |
+        python tests/bulk_test_chatbot.py
