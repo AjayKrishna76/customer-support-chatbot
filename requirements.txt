@@ -6,3 +6,4 @@ flask
 pytest
 python-dotenv
 flake8
+pytest-cov
