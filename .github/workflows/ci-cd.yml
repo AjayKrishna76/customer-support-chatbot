@@ -84,14 +84,8 @@ jobs:
       run: |
         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
-
-    - name: Await Approval
-      uses: hmarr/auto-approve-action@v2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Deploy to Production Environment
-      if: success()
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
