@@ -84,18 +84,10 @@ jobs:
         sudo chmod +x /usr/local/bin/docker-compose
 
     - name: Await Approval
-      uses: actions/github-script@v4
+      uses: hmarr/auto-approve-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const { data: review } = await github.pulls.createReview({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_number: context.payload.pull_request.number,
-            event: 'APPROVE'
-          });
-          console.log(review);
-
+      
     - name: Deploy to Production Environment
       if: success()
       run: |
