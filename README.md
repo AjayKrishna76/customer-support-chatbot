@@ -46,7 +46,6 @@ customer-support-chatbot/
 └── .gitignore
 ```
 
-
 ## Prerequisites
 
 ### Prerequisites
@@ -111,6 +110,23 @@ docker-compose -f docker-compose.yml -f docker-compose.test.yml run app
 ## CI/CD Pipeline
 The CI/CD pipeline is set up using GitHub Actions and is defined in .github/workflows/ci-cd.yml. It consists of the following stages:
 
+### CI Pipeline
+1. Environment Setup: Sets up the Python environment and installs dependencies.
+2. Unit Tests: Runs unit tests to validate code functionality using pytest.
+3. Code Standards Check: Ensures code adheres to standards using flake8.
+4. Integration Tests: Runs integration tests to validate interactions between components.
+5. Experimentation: Conducts experiments if necessary (e.g., hyperparameter tuning, model experiments).
+6. Evaluation: Evaluates the model or system (e.g., performance metrics).
+7. Reports Artifacts: Generates and stores reports (e.g., test coverage, performance).
+
+### CD Pipeline
+1. Integration Tests: Ensures integration tests are run during the CD pipeline as well.
+2. Smoke Tests: Runs smoke tests to validate the basic functionality of the deployed system.
+3. Assign Permissions: Assigns appropriate permissions if necessary.
+4. Model Deployment: Deploys the model correctly to the production environment.
+5. Monitoring: Sets up monitoring and logging for the production environment.
+
+- The project is developed in three environments and are as follows
 1. Build: Deploys to the development environment.
 2. Test: Deploys to the test environment and runs the tests.
 3. Deploy: Awaits manual approval before deploying to the production environment.

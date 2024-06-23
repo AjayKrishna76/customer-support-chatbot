@@ -29,6 +29,14 @@ jobs:
         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
 
+    - name: Code Standards Check
+      run: |
+        flake8 src tests
+
+    - name: Run Unit Tests
+      run: |
+        pytest
+
     - name: Deploy to Dev Environment
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -71,6 +79,24 @@ jobs:
       run: |
         docker-compose -f docker-compose.yml -f docker-compose.test.yml run app
 
+    - name: Run Integration Tests
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      run: |
+        docker-compose -f docker-compose.yml -f docker-compose.test.yml run app 
+        
+    - name: Run Smoke Tests
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      run: |
+        # Add your smoke tests commands here
+        echo "Running smoke tests..."
+
+    - name: Generate Reports
+      run: |
+        # Add commands to generate test reports
+        echo "Generating test reports..."
+
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -90,3 +116,13 @@ jobs:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
         docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+
+    - name: Assign Permissions
+      run: |
+        # Add commands to assign permissions if necessary
+        echo "Assigning permissions..."
+  
+    - name: Monitor Deployment
+      run: |
+        # Add commands to set up monitoring and logging
+        echo "Setting up monitoring..."
