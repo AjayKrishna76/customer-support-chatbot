@@ -55,6 +55,7 @@ class TestChatbot(unittest.TestCase):
 
         user_message = "What are your hours of operation?"
         response = customer_support_chatbot(user_message)
+        logger.debug(f"Response: {response}")
         self.assertIn("Our customer support is available 24/7.", response['choices'][0]['message']['content'])
 
 if __name__ == "__main__":
