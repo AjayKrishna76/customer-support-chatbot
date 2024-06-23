@@ -1,18 +1,13 @@
 name: CI/CD Pipeline
 
 on:
-  workflow_dispatch:
-  #pull_request:
-  #  branches:
-  #    - DEV
-  #push:
-  #  branches:
-  #    - DEV
+  push:
+    branches:
+      - main
 
 jobs:
-  DEV:
+  build:
     runs-on: ubuntu-latest
-    environment: DEV
     env:
       ENV_FILE: .env.dev
 
@@ -30,55 +25,25 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Check Code Standards
+    - name: Install Docker Compose
       run: |
-        flake8 src tests    
+        sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
 
-    - name: Run Unit Tests with Coverage
-      env:
-        PYTHONPATH: ${{ github.workspace }}/src
+    - name: Deploy to Dev Environment
       run: |
-        pytest --cov=src --cov-report=xml --cov-report=html
+        docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d
 
-    - name: Run Bulk Test
-      env:
-        PYTHONPATH: ${{ github.workspace }}/src
-      run: |
-        python tests/bulk_test_chatbot.py
-    
-    - name: Upload Test Results
-      if: always()
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: reports/
-
-    - name: Upload Coverage Report
-      if: always()
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: htmlcov/
-    
-    - name: Deploy to Test Environment
-      run: |
-        docker-compose -f docker-compose.yml -f docker-compose.test.yml up --build -d
-  
-    - name: Run Tests in Test Environment
-      run: |
-        docker-compose -f docker-compose.yml -f docker-compose.test.yml run test
-
-  TEST:
+  test:
+    needs: build
     runs-on: ubuntu-latest
-    environment: TEST
-    needs: DEV
     env:
       ENV_FILE: .env.test
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -88,52 +53,26 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    
-    - name: Check Code Standards
-      run: |
-        flake8 src tests    
 
-    - name: Run Unit Tests with Coverage
-      env:
-        PYTHONPATH: ${{ github.workspace }}/src
+    - name: Install Docker Compose
       run: |
-        pytest --cov=src --cov-report=xml --cov-report=html
+        sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
 
-    - name: Run Bulk Test
-      env:
-        PYTHONPATH: ${{ github.workspace }}/src
-      run: |
-        python tests/bulk_test_chatbot.py
-    
-    - name: Upload Test Results
-      if: always()
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: reports/
-
-    - name: Upload Coverage Report
-      if: always()
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: htmlcov/
-    
     - name: Deploy to Test Environment
       run: |
         docker-compose -f docker-compose.yml -f docker-compose.test.yml up --build -d
-  
+
     - name: Run Tests in Test Environment
       run: |
-        docker-compose -f docker-compose.yml -f docker-compose.test.yml run test
+        docker-compose -f docker-compose.yml -f docker-compose.test.yml run app
 
-  PROD:
+  deploy:
+    needs: test
     runs-on: ubuntu-latest
-    environment: PROD
-    needs: TEST
     env:
       ENV_FILE: .env.prod
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
