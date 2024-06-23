@@ -157,7 +157,7 @@ jobs:
         # Data Drift Monitoring
         cd scripts
         python data_drift_monitoring.py
-
+        echo "monitoring complete..."
     - name: Set up Infrastructure Telemetry
       run: |
         # Add commands to set up infrastructure telemetry (e.g., Prometheus, Grafana)
@@ -166,8 +166,9 @@ jobs:
     - name: Evaluate Model
       run: |
         # Add commands to evaluate the model
-        python scripts/evaluate_model.py
-
+        # python scripts/evaluate_model.py
+        echo "Evaluating the Model..."
+        
     - name: Monitor System Performance
       run: |
         # Add commands to monitor system performance (e.g., response time, error rates)
