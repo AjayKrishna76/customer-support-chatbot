@@ -1,12 +1,12 @@
 name: CI/CD Pipeline
 
 on:
-  pull_request:
-    branches:
-      - DEV
-  push:
-    branches:
-      - DEV
+  #pull_request:
+  #  branches:
+  #    - DEV
+  #push:
+  #  branches:
+  #    - DEV
 
 jobs:
   DEV:
