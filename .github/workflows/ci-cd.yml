@@ -30,6 +30,8 @@ jobs:
         sudo chmod +x /usr/local/bin/docker-compose
 
     - name: Deploy to Dev Environment
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
         docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d
 
@@ -90,5 +92,7 @@ jobs:
       
     - name: Deploy to Production Environment
       if: success()
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
         docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d

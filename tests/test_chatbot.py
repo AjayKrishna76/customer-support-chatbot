@@ -2,6 +2,7 @@ import unittest
 import sys
 import os
 from unittest.mock import patch
+import openai
 from openai import OpenAI
 from dotenv import load_dotenv
 import logging
