@@ -2,10 +2,19 @@ import unittest
 import sys
 import os
 from unittest.mock import patch
+from openai import OpenAI
+from dotenv import load_dotenv
+import logging
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 from chatbot import customer_support_chatbot
 
 load_dotenv()
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 class TestChatbot(unittest.TestCase):
