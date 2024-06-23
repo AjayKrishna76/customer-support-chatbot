@@ -31,16 +31,17 @@ data_drift_report.run(reference_data=reference_data, current_data=new_data, colu
 
 # Save the report to a JSON file
 report_path = "../reports/data_drift_report.json"
-if not os.path.exists("reports"):
-    os.makedirs("reports")
 data_drift_report.save_json(report_path)
 
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
 # Upload the report to Azure Blob Storage
 connection_string = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
 container_name = os.getenv("AZURE_STORAGE_CONTAINER_NAME")
+
+if not connection_string or not container_name:
+    raise ValueError("AZURE_STORAGE_CONNECTION_STRING and AZURE_STORAGE_CONTAINER_NAME environment variables must be set")
 
 blob_service_client = BlobServiceClient.from_connection_string(connection_string)
 blob_client = blob_service_client.get_blob_client(container=container_name, blob="reports/data_drift_report.json")
