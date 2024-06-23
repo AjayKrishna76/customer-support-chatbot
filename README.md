@@ -23,19 +23,20 @@ This project is an AI-powered customer support chatbot using Azure and OpenAI se
 
 ## Project Structure
 ```
-customer-support-chatbot/
-├── .devcontainer/
-│   └── devcontainer.json
 ├── .github/
-│   └── workflows/
-│       └── ci-cd.yml
+│ └── workflows/
+│     └── ci-cd.yml
 ├── data/
-│   └── sample_data.txt
-├── src/
-│   └── chatbot.py
-├── tests/
-│   ├── bulk_test_chatbot.py
-│   └── test_chatbot.py
+│ ├── reference_data.csv
+│ ├── new_data.csv
+| ├── marketing_campaign.csv
+├── reports/
+│ └── data_drift_report.json
+├── scripts/
+│ ├── data_drift_monitoring.py
+│ ├── evaluate_model.py
+│ ├── set_up_telemetry.py
+│ └── monitor_performance.py
 ├── Dockerfile
 ├── docker-compose.yml
 ├── docker-compose.dev.yml
@@ -45,7 +46,6 @@ customer-support-chatbot/
 ├── README.md
 └── .gitignore
 ```
-
 ## Prerequisites
 
 ### Prerequisites
@@ -60,6 +60,8 @@ customer-support-chatbot/
    - [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 5. **OpenAI API Key**: An API key from OpenAI to access their GPT-3 model
    - [Get an OpenAI API Key](https://beta.openai.com/signup/)
+
+6. **Azure Services**: Require different azure services for different use cases. You need the connection string, API key and all the related details needed to connect to a particular Azure service
 
 
 ## Setup and Installation

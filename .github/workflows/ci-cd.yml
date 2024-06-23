@@ -42,6 +42,8 @@ jobs:
     - name: Deploy to Dev Environment
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        AZURE_STORAGE_CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
       run: |
         docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d
 
@@ -72,12 +74,16 @@ jobs:
     - name: Deploy to Test Environment
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        AZURE_STORAGE_CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
       run: |
         docker-compose -f docker-compose.yml -f docker-compose.test.yml up --build -d
 
     - name: Run Tests in Test Environment
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        AZURE_STORAGE_CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
       run: |
         docker-compose -f docker-compose.yml -f docker-compose.test.yml run app
 
@@ -90,6 +96,8 @@ jobs:
     - name: Run Smoke Tests
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        AZURE_STORAGE_CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
       run: |
         # Add your smoke tests commands here
         echo "Running smoke tests..."
@@ -116,6 +124,8 @@ jobs:
     - name: Deploy to Production Environment
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        AZURE_STORAGE_CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
       run: |
         docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
 
@@ -128,3 +138,27 @@ jobs:
       run: |
         # Add commands to set up monitoring and logging
         echo "Setting up monitoring..."
+
+    - name: Set up Monitoring
+      env:
+        AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        AZURE_STORAGE_CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
+      run: |
+        # Data Drift Monitoring
+        cd scripts
+        python data_drift_monitoring.py
+
+    - name: Set up Infrastructure Telemetry
+      run: |
+        # Add commands to set up infrastructure telemetry (e.g., Prometheus, Grafana)
+        echo "Setting up infrastructure telemetry..."
+
+    - name: Evaluate Model
+      run: |
+        # Add commands to evaluate the model
+        python scripts/evaluate_model.py
+
+    - name: Monitor System Performance
+      run: |
+        # Add commands to monitor system performance (e.g., response time, error rates)
+        echo "Monitoring system performance..."
