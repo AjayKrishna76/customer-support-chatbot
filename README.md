@@ -1,6 +1,6 @@
 # End-to-End AI Customer Support Chatbot with deployment Flow
 
-This project is an AI-powered customer support chatbot using Azure and OpenAI services. The chatbot can handle common customer queries and provide relevant information. 
+This repo is an AI-powered customer support chatbot application using Azure and OpenAI services. The chatbot can handle common customer queries and provide relevant information. 
 
 - I have implemented this AI application using the End-to-End deployment Flow. 
 - The main aim of this project is to show the deployment flow in a real world industry setting using all the tools and services for effective source control and deployments.
